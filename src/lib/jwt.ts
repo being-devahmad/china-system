@@ -1,16 +1,18 @@
 import jwt from "jsonwebtoken";
 
-const SECRET_KEY = process.env.JWT_SECRET || "your_secret_key";
+const JWT_SECRET = process.env.JWT_SECRET as string;
+const JWT_EXPIRATION = "1h";  // You can adjust the expiration time
 
-export function signJwt(payload: object) {
-    return jwt.sign(payload, SECRET_KEY, { expiresIn: "7d" });
+// Create JWT token
+export function createJWT(user: { _id: string, email: string, role: string, tenantDb: string }) {
+  return jwt.sign(user, JWT_SECRET, { expiresIn: JWT_EXPIRATION });
 }
 
-export function verifyJwt(token: string) {
-    try {
-        return jwt.verify(token, SECRET_KEY);
-    } catch (error) {
-        console.log("jwtError", error)
-        return null;
-    }
+// Verify JWT token
+export function verifyJWT(token: string) {
+  try {
+    return jwt.verify(token, JWT_SECRET);
+  } catch (err) {
+    return null;
+  }
 }
