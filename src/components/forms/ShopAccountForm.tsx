@@ -3,11 +3,10 @@
 import type React from "react"
 
 import { useState } from "react"
-import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import { Building2, Check, ChevronsUpDown, Plus, Store, Trash2, Upload, User } from "lucide-react"
-
+import { useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
@@ -18,6 +17,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { cn } from "@/lib/utils"
+import Image from "next/image"
 
 const cities = [
   { label: "New York", value: "new-york" },
@@ -205,9 +205,10 @@ export default function ShopAccountForm() {
                                   )}
                                 >
                                   {imagePreview ? (
-                                    <img
+                                    <Image
                                       src={imagePreview || "/placeholder.svg"}
                                       alt="Shop preview"
+                                      fill
                                       className="w-full h-full object-cover"
                                     />
                                   ) : (

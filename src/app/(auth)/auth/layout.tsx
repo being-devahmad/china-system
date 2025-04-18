@@ -1,5 +1,5 @@
 import type React from "react"
-import { CircleDollarSign, Shield, BarChart3, FileText, Clock, Users } from "lucide-react"
+import { CircleDollarSign, BarChart3, FileText, } from "lucide-react"
 
 export default function AuthLayout({
     children,
