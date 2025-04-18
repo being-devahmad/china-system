@@ -2,9 +2,6 @@
 
 import { CreditCard, FileText, Home, PieChart, Settings, Users } from "lucide-react";
 
-
-
-
 export const MENU_ITEMS = [
     {
         icon: Home,
@@ -12,19 +9,19 @@ export const MENU_ITEMS = [
         href: "/dashboard",
     },
     {
-        icon: FileText,
-        label: "Invoices",
-        href: "/dashboard/invoices",
+        icon: Users,
+        label: "Accounts",
+        href: "/dashboard/accounts",
     },
     {
         icon: CreditCard,
-        label: "Payments",
-        href: "/dashboard/payments",
+        label: "Purchase Orders",
+        href: "/dashboard/purchase-orders",
     },
     {
-        icon: Users,
-        label: "Clients",
-        href: "/dashboard/clients",
+        icon: FileText,
+        label: "Invoices",
+        href: "/dashboard/invoices",
     },
     {
         icon: PieChart,

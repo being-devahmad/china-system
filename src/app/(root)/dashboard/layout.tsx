@@ -189,47 +189,47 @@ export default function DashboardLayout({
                             collapsed={sidebarCollapsed}
                         />
                         <NavItem
-                            href="/dashboard/invoices"
+                            href="/dashboard/accounts"
+                            icon={<Users className="h-5 w-5" />}
+                            label="Accounts"
+                            active={pathname.startsWith("/dashboard/accounts")}
+                            collapsed={sidebarCollapsed}
+                        />
+                        <NavItem
+                            href="/dashboard/purchase-orders"
                             icon={<FileText className="h-5 w-5" />}
+                            label="Purchase Orders"
+                            active={pathname.startsWith("/dashboard/purchase-orders")}
+                            collapsed={sidebarCollapsed}
+                        />
+                        <NavItem
+                            href="/dashboard/invoices"
+                            icon={<CreditCard className="h-5 w-5" />}
                             label="Invoices"
                             active={pathname.startsWith("/dashboard/invoices")}
                             collapsed={sidebarCollapsed}
                         />
                         <NavItem
-                            href="/dashboard/clients"
-                            icon={<Users className="h-5 w-5" />}
-                            label="Clients"
-                            active={pathname.startsWith("/dashboard/clients")}
-                            collapsed={sidebarCollapsed}
-                        />
-                        <NavItem
-                            href="/dashboard/payments"
-                            icon={<CreditCard className="h-5 w-5" />}
-                            label="Payments"
-                            active={pathname.startsWith("/dashboard/payments")}
-                            collapsed={sidebarCollapsed}
-                        />
-                        <NavItem
-                            href="/dashboard/reports"
+                            href="/dashboard/vouchers"
                             icon={<BarChart3 className="h-5 w-5" />}
-                            label="Reports"
-                            active={pathname.startsWith("/dashboard/reports")}
+                            label="Vouchers"
+                            active={pathname.startsWith("/dashboard/vouchers")}
                             collapsed={sidebarCollapsed}
                         />
                         <NavItem
-                            href="/dashboard/analytics"
+                            href="/dashboard/ledger"
                             icon={<PieChart className="h-5 w-5" />}
-                            label="Analytics"
-                            active={pathname.startsWith("/dashboard/analytics")}
+                            label="Ledger"
+                            active={pathname.startsWith("/dashboard/ledger")}
                             collapsed={sidebarCollapsed}
                         />
-                        <NavItem
+                        {/* <NavItem
                             href="/dashboard/calendar"
                             icon={<Calendar className="h-5 w-5" />}
                             label="Calendar"
                             active={pathname.startsWith("/dashboard/calendar")}
                             collapsed={sidebarCollapsed}
-                        />
+                        /> */}
 
                         <div className={cn("pt-4 mt-4 border-t border-slate-200", sidebarCollapsed ? "mx-2" : "mx-1")}>
                             <NavItem
