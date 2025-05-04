@@ -1,133 +1,149 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 
 export function LedgerTable() {
   const transactions = [
     {
       id: "FT-2025-0001",
       date: "2025-04-15",
+      branch: "msj",
+      invoiceNo: "247",
+      description: "S-B-R-Invoice",
+      mode: "sale DEBIT",
       shop: "Fashion Outlet",
-      description: "Payment for Invoice #INV-001",
-      paymentMethod: "Cash",
+      debit: 1250.0,
+      credit: 0,
+      balance: 1250.0,
       billNumber: "BILL-001",
-      containerNumber: "CNT-001",
-      debit: "$1,250.00",
-      credit: "-",
-      balance: "$1,250.00",
+      paid: true,
+      userName: "Wasal Rasool",
+      bank: "N/A",
     },
     {
       id: "FT-2025-0002",
       date: "2025-04-14",
+      branch: "msj",
+      invoiceNo: "243",
+      description: "S-B-Invoice",
+      mode: "sale DEBIT",
       shop: "Electronics Hub",
-      description: "Payment for Invoice #INV-002",
-      paymentMethod: "Bank",
+      debit: 2780.5,
+      credit: 0,
+      balance: 4030.5,
       billNumber: "BILL-002",
-      containerNumber: "CNT-002",
-      debit: "$2,780.50",
-      credit: "-",
-      balance: "$4,030.50",
+      paid: true,
+      userName: "Wasal Rasool",
+      bank: "N/A",
     },
     {
       id: "FT-2025-0003",
       date: "2025-04-13",
+      branch: "msj",
+      invoiceNo: "241",
+      description: "S-B-Invoice",
+      mode: "sale DEBIT",
       shop: "Home Decor",
-      description: "Payment for Invoice #INV-003",
-      paymentMethod: "WeChat",
+      debit: 950.25,
+      credit: 0,
+      balance: 4980.75,
       billNumber: "BILL-003",
-      containerNumber: "CNT-001",
-      debit: "$950.25",
-      credit: "-",
-      balance: "$4,980.75",
+      paid: false,
+      userName: "Wasal Rasool",
+      bank: "N/A",
     },
     {
       id: "FT-2025-0004",
       date: "2025-04-12",
+      branch: "msj",
+      invoiceNo: "240",
+      description: "S-B-Invoice",
+      mode: "sale DEBIT",
       shop: "Sports Center",
-      description: "Payment for Invoice #INV-004",
-      paymentMethod: "Alipay",
+      debit: 1845.75,
+      credit: 0,
+      balance: 6826.5,
       billNumber: "BILL-004",
-      containerNumber: "CNT-003",
-      debit: "$1,845.75",
-      credit: "-",
-      balance: "$6,826.50",
+      paid: true,
+      userName: "Wasal Rasool",
+      bank: "N/A",
     },
     {
       id: "FT-2025-0005",
       date: "2025-04-11",
+      branch: "msj",
+      invoiceNo: "239",
+      description: "S-B-R-Invoice",
+      mode: "sale return",
       shop: "Fashion Outlet",
-      description: "Payment for Invoice #INV-005",
-      paymentMethod: "Cash",
+      debit: 0,
+      credit: 500.0,
+      balance: 6326.5,
       billNumber: "BILL-005",
-      containerNumber: "CNT-002",
-      debit: "-",
-      credit: "$500.00",
-      balance: "$6,326.50",
+      paid: true,
+      userName: "Wasal Rasool",
+      bank: "N/A",
     },
   ]
 
-  const getPaymentMethodBadge = (method: string) => {
-    switch (method) {
-      case "Cash":
-        return (
-          <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
-            Cash
-          </Badge>
-        )
-      case "Bank":
-        return (
-          <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
-            Bank
-          </Badge>
-        )
-      case "WeChat":
-        return (
-          <Badge variant="outline" className="bg-emerald-50 text-emerald-700 border-emerald-200">
-            WeChat
-          </Badge>
-        )
-      case "Alipay":
-        return (
-          <Badge variant="outline" className="bg-orange-50 text-orange-700 border-orange-200">
-            Alipay
-          </Badge>
-        )
-      default:
-        return <Badge variant="outline">{method}</Badge>
-    }
-  }
+  const totalDebit = transactions.reduce((sum, transaction) => sum + transaction.debit, 0)
+  const totalCredit = transactions.reduce((sum, transaction) => sum + transaction.credit, 0)
 
   return (
-    <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHead>Date</TableHead>
-          <TableHead>Transaction ID</TableHead>
-          <TableHead>Shop</TableHead>
-          <TableHead>Description</TableHead>
-          <TableHead>Payment Method</TableHead>
-          <TableHead>Bill #</TableHead>
-          <TableHead>Container #</TableHead>
-          <TableHead className="text-right">Debit</TableHead>
-          <TableHead className="text-right">Credit</TableHead>
-          <TableHead className="text-right">Balance</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {transactions.map((transaction) => (
-          <TableRow key={transaction.id}>
-            <TableCell>{transaction.date}</TableCell>
-            <TableCell className="font-medium">{transaction.id}</TableCell>
-            <TableCell>{transaction.shop}</TableCell>
-            <TableCell>{transaction.description}</TableCell>
-            <TableCell>{getPaymentMethodBadge(transaction.paymentMethod)}</TableCell>
-            <TableCell>{transaction.billNumber}</TableCell>
-            <TableCell>{transaction.containerNumber}</TableCell>
-            <TableCell className="text-right">{transaction.debit}</TableCell>
-            <TableCell className="text-right">{transaction.credit}</TableCell>
-            <TableCell className="text-right font-medium">{transaction.balance}</TableCell>
+    <div className="overflow-auto">
+      <Table className="border-collapse w-full">
+        <TableHeader className="bg-gray-100">
+          <TableRow className="text-xs font-medium text-gray-700">
+            <TableHead className="border px-2 py-2">Date</TableHead>
+            <TableHead className="border px-2 py-2">Branch</TableHead>
+            <TableHead className="border px-2 py-2">INV/VOUC. No</TableHead>
+            <TableHead className="border px-2 py-2">Detail</TableHead>
+            <TableHead className="border px-2 py-2">Mode</TableHead>
+            <TableHead className="border px-2 py-2">Account Name</TableHead>
+            <TableHead className="border px-2 py-2 text-right">Debit</TableHead>
+            <TableHead className="border px-2 py-2 text-right">Credit</TableHead>
+            <TableHead className="border px-2 py-2 text-right">Balance</TableHead>
+            <TableHead className="border px-2 py-2">Bill</TableHead>
+            <TableHead className="border px-2 py-2">Paid</TableHead>
+            <TableHead className="border px-2 py-2">User Name</TableHead>
+            <TableHead className="border px-2 py-2">Bank</TableHead>
+            <TableHead className="border px-2 py-2">Ref ID</TableHead>
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+        </TableHeader>
+        <TableBody>
+          {transactions.map((transaction) => (
+            <TableRow key={transaction.id} className="text-sm">
+              <TableCell className="border px-2 py-2">{transaction.date}</TableCell>
+              <TableCell className="border px-2 py-2">{transaction.branch}</TableCell>
+              <TableCell className="border px-2 py-2">{transaction.invoiceNo}</TableCell>
+              <TableCell className="border px-2 py-2">{transaction.description}</TableCell>
+              <TableCell className="border px-2 py-2">{transaction.mode}</TableCell>
+              <TableCell className="border px-2 py-2">{transaction.shop}</TableCell>
+              <TableCell className="border px-2 py-2 text-right">
+                {transaction.debit > 0 ? transaction.debit.toFixed(2) : "0"}
+              </TableCell>
+              <TableCell className="border px-2 py-2 text-right">
+                {transaction.credit > 0 ? transaction.credit.toFixed(2) : "0"}
+              </TableCell>
+              <TableCell className="border px-2 py-2 text-right font-medium">
+                {transaction.balance.toFixed(2)}
+              </TableCell>
+              <TableCell className="border px-2 py-2">{transaction.billNumber}</TableCell>
+              <TableCell className="border px-2 py-2">{transaction.paid ? "Yes" : "No"}</TableCell>
+              <TableCell className="border px-2 py-2">{transaction.userName}</TableCell>
+              <TableCell className="border px-2 py-2">{transaction.bank}</TableCell>
+              <TableCell className="border px-2 py-2">
+                <Button
+                  size="sm"
+                  variant="default"
+                  className="bg-blue-500 hover:bg-blue-600 text-white py-0 px-3 text-xs h-6 rounded"
+                >
+                  Slip
+                </Button>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
   )
 }

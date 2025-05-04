@@ -22,6 +22,7 @@ import {
     CreditCard,
     PieChart,
     Calendar,
+    Users2,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -196,6 +197,13 @@ export default function DashboardLayout({
                             collapsed={sidebarCollapsed}
                         />
                         <NavItem
+                            href="/dashboard/category"
+                            icon={<FileText className="h-5 w-5" />}
+                            label="Category"
+                            active={pathname.startsWith("/dashboard/category")}
+                            collapsed={sidebarCollapsed}
+                        />
+                        <NavItem
                             href="/dashboard/purchase-orders"
                             icon={<FileText className="h-5 w-5" />}
                             label="Purchase Orders"
@@ -217,19 +225,33 @@ export default function DashboardLayout({
                             collapsed={sidebarCollapsed}
                         />
                         <NavItem
+                            href="/dashboard/invoice-container-report"
+                            icon={<PieChart className="h-5 w-5" />}
+                            label="Invoice Container Report"
+                            active={pathname.startsWith("/dashboard/invoice-container-report")}
+                            collapsed={sidebarCollapsed}
+                        />
+                        <NavItem
+                            href="/dashboard/register-container-report"
+                            icon={<PieChart className="h-5 w-5" />}
+                            label="Register Container Report"
+                            active={pathname.startsWith("/dashboard/register-container-report")}
+                            collapsed={sidebarCollapsed}
+                        />
+                        <NavItem
                             href="/dashboard/ledger"
                             icon={<PieChart className="h-5 w-5" />}
                             label="Ledger"
                             active={pathname.startsWith("/dashboard/ledger")}
                             collapsed={sidebarCollapsed}
                         />
-                        {/* <NavItem
-                            href="/dashboard/calendar"
-                            icon={<Calendar className="h-5 w-5" />}
-                            label="Calendar"
-                            active={pathname.startsWith("/dashboard/calendar")}
+                        <NavItem
+                            href="/dashboard/users"
+                            icon={<Users2 className="h-5 w-5" />}
+                            label="Users"
+                            active={pathname.startsWith("/dashboard/users")}
                             collapsed={sidebarCollapsed}
-                        /> */}
+                        />
 
                         <div className={cn("pt-4 mt-4 border-t border-slate-200", sidebarCollapsed ? "mx-2" : "mx-1")}>
                             <NavItem
@@ -348,6 +370,17 @@ export default function DashboardLayout({
                             collapsed={false}
                             onClick={closeMobileMenu}
                         />
+
+                        <div className="pt-4 mt-4 border-t border-slate-200 mx-1">
+                            <NavItem
+                                href="/dashboard/users"
+                                icon={<Users2 className="h-5 w-5" />}
+                                label="Users"
+                                active={pathname.startsWith("/dashboard/users")}
+                                collapsed={false}
+                                onClick={closeMobileMenu}
+                            />
+                        </div>
 
                         <div className="pt-4 mt-4 border-t border-slate-200 mx-1">
                             <NavItem

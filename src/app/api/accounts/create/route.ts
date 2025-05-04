@@ -1,22 +1,32 @@
-// src/app/api/accounts/create/route.ts
-import { Account } from '@/models/Account';
-import { NextResponse } from 'next/server';
+import dbConnect from "@/lib/db";
+import { ShopAccount } from "@/models/Account";
+import { ShopAccountFormState } from "@/store/account.store";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req: Request) {
-    const { tenantId, name, type, CNIC, phone } = await req.json();
 
-    // Connect to the tenant's specific database
-    await connectToTenantDB(tenantId);
+export async function POST(request: NextRequest) {
+  try {
+    await dbConnect(); // Ensure DB is connected
 
-    // Create a new account for that tenant
-    const account = new Account({
-        name,
-        type,
-        CNIC,
-        phone
+    const data: ShopAccountFormState = await request.json();
+
+    // Validations as before...
+
+    const newAccount = await ShopAccount.create({
+      ...data,
+      createdAt: new Date(),
     });
 
-    await account.save();
-
-    return NextResponse.json({ message: 'Account created successfully', account });
+    return NextResponse.json(
+      {
+        success: true,
+        message: "Shop account created successfully",
+        data: newAccount,
+      },
+      { status: 201 }
+    );
+  } catch (error) {
+    console.error("Error creating shop account:", error);
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+  }
 }
